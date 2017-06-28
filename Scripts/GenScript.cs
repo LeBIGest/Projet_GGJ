@@ -10,23 +10,6 @@ public class GenScript {
 
     void Start()
     {
-      //  this._firstCube = Resources.Load("tempGen") as GameObject;
-      /*  GameObject myCube;
-
-        Debug.Log("DANS START");
-        for (int j = 0; j < _y; j++)
-        {
-            for (int i = 0; i < _x; i++)
-            {
-                myCube = GameObject.Instantiate(this._firstCube);
-                myCube.transform.Translate((float)j, 0, (float)i);
-            }
-        }*/
-    }
-
-    void Update()
-    {
-        
     }
 
     public void    SetSize(int x, int y)
@@ -39,7 +22,6 @@ public class GenScript {
     {
         GameObject myCube;
 
-        Debug.Log("DANS START");
         for (int j = 0; j < _y; j++)
         {
             for (int i = 0; i < _x; i++)

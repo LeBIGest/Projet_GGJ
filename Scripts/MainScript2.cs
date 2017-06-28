@@ -3,24 +3,44 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class MainScript2 : MonoBehaviour {
+public class MainScript2 : MonoBehaviour
+{
 
-    void Start () {
-    //    NetworkScript test = new NetworkScript();
-    //    test.setupSocket();
-    //    if (test.readSocket() != "")
-    //        Debug.Log("READ  " + test.readSocket());
-    //    test.writeSocket("GRAPHIC");
-    //    Debug.Log("READ  " + test.readSocket());
-        String value = "msz 200 200\n";
-        Char delim = ' ';
-        String[] substrings = value.Split(delim);
+    NetworkScript net;
+    ParsingScript parser;
+    private float TimeIntervale = 0.0f;
+    Char delim = ' ';
 
-        ParsingScript test = new ParsingScript();
-        test.SetServSend(substrings);
-        test.CreateDico();
-        test.SearchInDico("msz");
+    void Start()
+    {
+        net = new NetworkScript();
+        parser = new ParsingScript();
 
-    //  test.closeSocket();
+        parser.CreateDico();
+        net.setupSocket();
+        net.writeSocket("GRAPHIC");
+    }
+
+    private void OnDestroy()
+    {
+        net.closeSocket();
+    }
+
+    void Update()
+    {
+        TimeIntervale += Time.deltaTime;
+        String line = null;
+
+  //      if (TimeIntervale >= 0.1f)
+  //      {
+  //          TimeIntervale = 0.0f;
+            if ((line = net.readSocket()) != "")
+            {
+  //              print(line);
+                String[] cmd = line.Split(delim);
+             parser.SetServSend(cmd);
+            parser.SearchInDico(cmd[0]);
+            }
+   //    }
     }
 }

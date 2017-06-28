@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Net.Sockets;
 
+[Serializable]
 public class NetworkScript : MonoBehaviour
 {
     internal Boolean socketReady = false;
@@ -11,15 +12,14 @@ public class NetworkScript : MonoBehaviour
     NetworkStream theStream;
     StreamWriter theWriter;
     StreamReader theReader;
-    String Host = "10.26.111.236";
-    Int32 Port = 4242;
+    public String Host = "10.26.111.181";
+    public Int32 Port = 4242;
     void Start()
     {
     }
     void Update()
     {
     }
-    // **********************************************
     public void setupSocket()
     {
         try
@@ -60,6 +60,4 @@ public class NetworkScript : MonoBehaviour
         mySocket.Close();
         socketReady = false;
     }
-} // end class s_TCP
-
-
+}   // end class
